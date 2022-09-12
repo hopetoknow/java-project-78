@@ -10,3 +10,15 @@ version = '1.0-SNAPSHOT'
 compileJava {
     options.release = 17
 }
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
