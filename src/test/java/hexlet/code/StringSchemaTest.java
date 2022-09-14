@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -23,6 +24,7 @@ public class StringSchemaTest {
 
     @Test
     public void isValid() {
+        assertFalse(schema.isValid(2));
         assertTrue(schema.isValid(""));
         assertTrue(schema.isValid(null));
 
@@ -30,6 +32,7 @@ public class StringSchemaTest {
 
         assertTrue(schema.isValid("four out of five"));
         assertTrue(schema.isValid("brainstorm"));
+        assertFalse(schema.isValid(2));
         assertFalse(schema.isValid(null));
         assertFalse(schema.isValid(""));
 
