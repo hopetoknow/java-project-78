@@ -39,7 +39,9 @@ public class NumberSchemaTest {
         assertTrue(schema.isValid(TEN));
         assertFalse(schema.isValid("5"));
 
-        assertTrue(schema.positive().isValid(TEN));
+        schema.positive();
+
+        assertTrue(schema.isValid(TEN));
         assertFalse(schema.isValid(MINUS_TEN));
 
         schema.range(FIVE, TEN);
@@ -48,5 +50,9 @@ public class NumberSchemaTest {
         assertTrue(schema.isValid(TEN));
         assertFalse(schema.isValid(FOUR));
         assertFalse(schema.isValid(ELEVEN));
+
+        schema.range(MINUS_TEN, TEN);
+
+        assertFalse(schema.isValid(-1));
     }
 }

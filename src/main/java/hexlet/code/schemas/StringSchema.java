@@ -17,19 +17,19 @@ public final class StringSchema extends BaseSchema {
             return false;
         }
 
-        if (getIsRequired()) {
-            setIsValid(str.length() > 0);
+        if (getIsRequired() && !(str.length() > 0)) {
+            return false;
         }
 
-        if (isContains) {
-            setIsValid(str.contains(containedText));
+        if (isContains && !str.contains(containedText)) {
+            return false;
         }
 
-        if (isMinLength) {
-            setIsValid(str.length() >= minLength);
+        if (isMinLength && !(str.length() >= minLength)) {
+            return false;
         }
 
-        return getIsValid();
+        return true;
     }
 
     public StringSchema contains(String str) {

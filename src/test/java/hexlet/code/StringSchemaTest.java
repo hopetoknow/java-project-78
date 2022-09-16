@@ -41,8 +41,7 @@ public class StringSchemaTest {
         assertFalse(schema.contains("fourout").isValid("four out of five"));
         assertFalse(schema.isValid("four out of five"));
 
-        assertTrue(schema.minLength(2).isValid("fiction"));
-        assertFalse(schema.minLength(2).isValid("f"));
-        assertTrue(schema.minLength(0).isValid(""));
+        assertTrue(schema.minLength(2).isValid("fourout"));
+        assertFalse(schema.minLength(2).isValid(""));
     }
 }

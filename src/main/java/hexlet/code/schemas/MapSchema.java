@@ -19,25 +19,18 @@ public final class MapSchema extends BaseSchema {
             return false;
         }
 
-        if (isSizeOf) {
-            setIsValid(map.size() == sizeof);
+        if (isSizeOf && !(map.size() == sizeof)) {
+            return false;
         }
 
         if (isShape) {
-            boolean tempBool = true;
             for (String key: shapeMap.keySet()) {
-                BaseSchema schema = shapeMap.get(key);
-                if (schema instanceof StringSchema stringSchema) {
-                    tempBool = stringSchema.isValid(map.get(key));
-                } else {
-                    NumberSchema numberSchema = (NumberSchema) schema;
-                    tempBool = tempBool && numberSchema.isValid(map.get(key));
+                if (!isMapValueValid(map, key)) {
+                    return false;
                 }
             }
-
-            setIsValid(tempBool);
         }
-        return getIsValid();
+        return true;
     }
 
     public MapSchema sizeof(int size) {
@@ -50,5 +43,15 @@ public final class MapSchema extends BaseSchema {
         this.isShape = true;
         this.shapeMap = map;
         return this;
+    }
+
+    private boolean isMapValueValid(Map map, String key) {
+        BaseSchema schema = shapeMap.get(key);
+        if (schema instanceof StringSchema stringSchema) {
+            return stringSchema.isValid(map.get(key));
+        } else {
+            NumberSchema numberSchema = (NumberSchema) schema;
+            return numberSchema.isValid(map.get(key));
+        }
     }
 }

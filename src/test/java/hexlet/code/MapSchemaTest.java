@@ -72,5 +72,9 @@ public class MapSchemaTest {
         human4.put("name", "Jamie");
         human4.put("age", -1);
         assertFalse(schema.isValid(human4));
+
+        schema.sizeof(1);
+
+        assertFalse(schema.isValid(human2));
     }
 }

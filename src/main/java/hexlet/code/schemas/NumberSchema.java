@@ -17,15 +17,15 @@ public final class NumberSchema extends BaseSchema {
             return false;
         }
 
-        if (isPositive) {
-            setIsValid(number > 0);
+        if (isPositive && !(number > 0)) {
+            return false;
         }
 
-        if (isRange) {
-            setIsValid((number >= rangeStart) && (number <= rangeEnd));
+        if (isRange && !((number >= rangeStart) && (number <= rangeEnd))) {
+            return false;
         }
 
-        return getIsValid();
+        return true;
     }
 
     public NumberSchema positive() {
