@@ -3,9 +3,9 @@ package hexlet.code.schemas;
 public final class StringSchema extends BaseSchema {
 
     private String containedText;
-    private int minLength;
     private boolean isContains;
     private boolean isMinLength;
+    private int minLength;
 
     @Override
     public boolean isValid(Object obj) {
