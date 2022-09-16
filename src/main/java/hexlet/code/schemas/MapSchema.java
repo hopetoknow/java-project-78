@@ -33,6 +33,12 @@ public final class MapSchema extends BaseSchema {
         return true;
     }
 
+    @Override
+    public MapSchema required() {
+        setIsRequired(true);
+        return this;
+    }
+
     public MapSchema sizeof(int size) {
         this.isSizeOf = true;
         this.sizeof = size;

@@ -5,12 +5,13 @@ public abstract class BaseSchema {
     private boolean isRequired;
     public abstract boolean isValid(Object obj);
 
-    public final BaseSchema required() {
-        this.isRequired = true;
-        return this;
-    }
+    public abstract BaseSchema required();
 
     public final boolean getIsRequired() {
         return isRequired;
+    }
+
+    public final void setIsRequired(boolean required) {
+        isRequired = required;
     }
 }

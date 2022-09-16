@@ -32,6 +32,12 @@ public final class StringSchema extends BaseSchema {
         return true;
     }
 
+    @Override
+    public StringSchema required() {
+        setIsRequired(true);
+        return this;
+    }
+
     public StringSchema contains(String str) {
         this.isContains = true;
         this.containedText = str;

@@ -28,6 +28,12 @@ public final class NumberSchema extends BaseSchema {
         return true;
     }
 
+    @Override
+    public NumberSchema required() {
+        setIsRequired(true);
+        return this;
+    }
+
     public NumberSchema positive() {
         this.isPositive = true;
         return this;
