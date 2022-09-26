@@ -1,17 +1,22 @@
 package hexlet.code.schemas;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+
 public abstract class BaseSchema {
+    private final Map<String, Predicate<Object>> requirements = new HashMap<>();
 
-    private boolean isRequired;
-    public abstract boolean isValid(Object obj);
-
-    public abstract BaseSchema required();
-
-    public final boolean getIsRequired() {
-        return isRequired;
+    protected final void addRequirement(String key, Predicate<Object> requirement) {
+        requirements.put(key, requirement);
     }
 
-    public final void setIsRequired(boolean required) {
-        isRequired = required;
+    public final boolean isValid(Object obj) {
+        for (Predicate<Object> requirement: requirements.values()) {
+            if (!requirement.test(obj)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

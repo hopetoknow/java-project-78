@@ -2,51 +2,22 @@ package hexlet.code.schemas;
 
 public final class StringSchema extends BaseSchema {
 
-    private String containedText;
-    private boolean isContains;
-    private boolean isMinLength;
-    private int minLength;
-
-    @Override
-    public boolean isValid(Object obj) {
-        if (!getIsRequired() && obj == null) {
-            return true;
-        }
-
-        if (!(obj instanceof String str)) {
-            return false;
-        }
-
-        if (getIsRequired() && !(str.length() > 0)) {
-            return false;
-        }
-
-        if (isContains && !str.contains(containedText)) {
-            return false;
-        }
-
-        if (isMinLength && !(str.length() >= minLength)) {
-            return false;
-        }
-
-        return true;
+    public StringSchema() {
+        addRequirement("initial", string -> string == null || string instanceof String);
     }
 
-    @Override
     public StringSchema required() {
-        setIsRequired(true);
+        addRequirement("required", string -> string instanceof String && !((String) string).isEmpty());
         return this;
     }
 
     public StringSchema contains(String str) {
-        this.isContains = true;
-        this.containedText = str;
+        addRequirement("contains", string -> string instanceof String && ((String) string).contains(str));
         return this;
     }
 
     public StringSchema minLength(int length) {
-        this.isMinLength = true;
-        this.minLength = length;
+        addRequirement("minLength", string -> string instanceof String && ((String) string).length() >= length);
         return this;
     }
 }

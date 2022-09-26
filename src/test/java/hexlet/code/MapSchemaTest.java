@@ -34,7 +34,7 @@ public class MapSchemaTest {
         assertFalse(schema.isValid(null));
         assertFalse(schema.isValid(""));
         assertFalse(schema.isValid(2));
-        assertTrue(schema.isValid(new HashMap()));
+        assertTrue(schema.isValid(new HashMap<>()));
         Map<String, String> data = new HashMap<>();
         data.put("key1", "value1");
         assertTrue(schema.isValid(data));
@@ -61,7 +61,7 @@ public class MapSchemaTest {
         Map<String, Object> human2 = new HashMap<>();
         human2.put("name", "Bob");
         human2.put("age", null);
-        assertTrue(schema.isValid(human2));
+        assertFalse(schema.isValid(human2));
 
         Map<String, Object> human3 = new HashMap<>();
         human3.put("name", "");
