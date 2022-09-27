@@ -1,16 +1,16 @@
 check-updates:
-	./gradlew dependencyUpdates
+	make -C app check-updates
 
 lint:
-	./gradlew checkstyleMain checkstyleTest
+	make -C app lint
 
 build:
-	./gradlew clean build
+	make -C app build
 
 test:
-	./gradlew test
+	make -C app test
 
 report:
-	./gradlew jacocoTestReport
+	make -C app report
 
 .PHONY: build
