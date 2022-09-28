@@ -14,12 +14,12 @@ public final class MapSchema extends BaseSchema {
     }
 
     public MapSchema sizeof(int size) {
-        addRequirement("sizeof", map -> map instanceof Map && ((Map<?, ?>) map).size() == size);
+        addRequirement("sizeof", map -> map == null || map instanceof Map && ((Map<?, ?>) map).size() == size);
         return this;
     }
 
     public MapSchema shape(Map<String, BaseSchema> schemas) {
-        addRequirement("shape", map -> map instanceof Map && schemas.entrySet().stream().
+        addRequirement("shape", map -> map == null || map instanceof Map && schemas.entrySet().stream().
                 allMatch(schema -> schema.getValue().isValid(((Map<?, ?>) map).get(schema.getKey()))));
         return this;
     }

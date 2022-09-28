@@ -12,12 +12,14 @@ public final class StringSchema extends BaseSchema {
     }
 
     public StringSchema contains(String str) {
-        addRequirement("contains", string -> string instanceof String && ((String) string).contains(str));
+        addRequirement("contains", string -> string == null
+                || string instanceof String && ((String) string).contains(str));
         return this;
     }
 
     public StringSchema minLength(int length) {
-        addRequirement("minLength", string -> string instanceof String && ((String) string).length() >= length);
+        addRequirement("minLength", string -> string == null
+                || string instanceof String && ((String) string).length() >= length);
         return this;
     }
 }

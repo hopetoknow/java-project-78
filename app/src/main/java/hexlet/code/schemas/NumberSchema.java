@@ -12,12 +12,12 @@ public final class NumberSchema extends BaseSchema {
     }
 
     public NumberSchema positive() {
-        addRequirement("positive", number -> number instanceof Integer && (Integer) number > 0);
+        addRequirement("positive", number -> number == null || number instanceof Integer && (Integer) number > 0);
         return this;
     }
 
     public NumberSchema range(int start, int end) {
-        addRequirement("range", number -> number instanceof Integer
+        addRequirement("range", number -> number == null || number instanceof Integer
                 && (Integer) number >= start && (Integer) number <= end);
         return this;
     }
